@@ -3,9 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:realview_challenge/core/bloc/app_bloc_observer.dart';
 import 'package:realview_challenge/core/di/injection.dart';
 import 'package:realview_challenge/core/theme/app_theme.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:realview_challenge/presentation/pages/author_search_page.dart';
 
 void main() {
-
   // Ensure Flutter binding is initialized
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -25,14 +26,9 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: getIt<AppTheme>().theme,
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Book Author App'),
-        ), 
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
+      home: AuthorSearchPage(),
     );
   }
 }
