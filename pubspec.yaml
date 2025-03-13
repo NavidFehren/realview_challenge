@@ -20,11 +20,23 @@ dependencies:
   # State Management
   flutter_bloc: ^9.1.0
   bloc: ^9.0.0
+  
+  # Dio for API calls
+  dio: ^5.8.0+1
 
   # Localizations
   flutter_localizations:
     sdk: flutter
   intl: ^0.19.0
+
+  # JSON Serialization
+  json_annotation: ^4.9.0
+
+  # For object comparison
+  equatable: ^2.0.7
+
+  # For either usage
+  dartz: ^0.10.1
 
 dev_dependencies:
   flutter_test:
@@ -35,6 +47,9 @@ dev_dependencies:
 
   # DI
   injectable_generator: ^2.7.0
+
+  # JSON Serialization
+  json_serializable: ^6.9.4
 
 flutter:
   uses-material-design: true

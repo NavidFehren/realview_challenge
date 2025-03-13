@@ -2,5 +2,21 @@
   "appTitle": "Author Search App",
   "@appTitle": {
     "description": "The title of the application"
+  },
+  "authorsSearchBarHint": "Search for authors",
+  "@authorsSearchBarHint": {
+    "description": "Hint text for the search bar"
+  },
+  "searchForAuthors": "Enter the author's name in the search bar",
+  "@searchForAuthors": {
+    "description": "Search for authors"
+  },
+  "noAuthorsFound": "No authors found",
+  "@noAuthorsFound": {
+    "description": "No authors found"
+  },
+  "errorWhileFetchingAuthors": "Error while fetching authors",
+  "@errorWhileFetchingAuthors": {
+    "description": "Error while fetching authors"
   }
 }

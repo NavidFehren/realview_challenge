@@ -4,7 +4,7 @@ import 'package:realview_challenge/core/bloc/app_bloc_observer.dart';
 import 'package:realview_challenge/core/di/injection.dart';
 import 'package:realview_challenge/core/theme/app_theme.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:realview_challenge/presentation/pages/author_search_page.dart';
+import 'package:realview_challenge/presentation/pages/authors_search_page.dart';
 
 void main() {
   // Ensure Flutter binding is initialized
@@ -28,7 +28,7 @@ class MainApp extends StatelessWidget {
       theme: getIt<AppTheme>().theme,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      home: AuthorSearchPage(),
+      home: AuthorsSearchPage(),
     );
   }
 }
