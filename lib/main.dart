@@ -1,6 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:realview_challenge/core/bloc/app_bloc_observer.dart';
 
 void main() {
+
+  // Ensure Flutter binding is initialized
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Set our custom BloC observer for logging
+  Bloc.observer = AppBlocObserver();
+
   runApp(const MainApp());
 }
 
