@@ -1,22 +1,10 @@
 {
   "appTitle": "Author Suche App",
-  "@appTitle": {
-    "description": "The title of the application"
-  },
   "authorsSearchBarHint": "Suche nach Autoren",
-  "@authorsSearchBarHint": {
-    "description": "Hint text for the search bar"
-  },
   "searchForAuthors": "Gebe den Namen des Autors in der Suchleiste ein",
-  "@searchForAuthors": {
-    "description": "Search for authors"
-  },
   "noAuthorsFound": "Keine Autoren gefunden",
-  "@noAuthorsFound": {
-    "description": "No authors found"
-  },
   "errorWhileFetchingAuthors": "Fehler beim Abrufen der Autoren",
-  "@errorWhileFetchingAuthors": {
-    "description": "Error while fetching authors"
-  }
+  "topWork": "Top Werk",
+  "birthDate": "Geburtsdatum",
+  "notAvailableShort": "N/A"
 }

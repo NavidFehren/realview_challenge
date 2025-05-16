@@ -18,5 +18,17 @@
   "errorWhileFetchingAuthors": "Error while fetching authors",
   "@errorWhileFetchingAuthors": {
     "description": "Error while fetching authors"
+  },
+  "topWork": "Top Work",
+  "@topWork": {
+    "description": "Top Work"
+  },
+  "birthDate": "Birth Date",
+  "@birthDate": {
+    "description": "Birth Date"
+  },
+  "notAvailableShort": "N/A",
+  "@notAvailableShort": {
+    "description": "The short form of not available: N/A"
   }
 }

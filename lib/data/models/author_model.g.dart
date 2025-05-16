@@ -10,6 +10,7 @@ AuthorModel _$AuthorModelFromJson(Map<String, dynamic> json) => AuthorModel(
   key: json['key'] as String,
   name: json['name'] as String,
   birthDate: json['birth_date'] as String?,
+  topWork: json['top_work'] as String?,
 );
 
 Map<String, dynamic> _$AuthorModelToJson(AuthorModel instance) =>
@@ -17,4 +18,5 @@ Map<String, dynamic> _$AuthorModelToJson(AuthorModel instance) =>
       'key': instance.key,
       'name': instance.name,
       'birth_date': instance.birthDate,
+      'top_work': instance.topWork,
     };
