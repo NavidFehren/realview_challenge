@@ -8,3 +8,7 @@ abstract class Failure {
 class ServerFailure extends Failure {
   const ServerFailure({required super.message});
 }
+
+class RequestCancelledFailure extends Failure {
+  const RequestCancelledFailure() : super(message: "Request was cancelled");
+}

@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:realview_challenge/core/enum/view_state.dart';
+import 'package:realview_challenge/core/error/failures.dart';
 import 'package:realview_challenge/domain/entities/author.dart';
 import 'package:realview_challenge/domain/usecases/get_authors.dart';
 import 'package:equatable/equatable.dart';
@@ -19,7 +20,15 @@ class AuthorsCubit extends Cubit<AuthorsState> {
 
     final result = await getAuthorsUseCase(query);
     result.fold(
-      (failure) => emit(state.copyWith(viewState: ViewState.error)),
+      (failure) {
+        // Handle cancellation specifically
+        if (failure is RequestCancelledFailure) {
+          emit(state.copyWith(viewState: ViewState.loading));
+          return;
+        }
+
+        emit(state.copyWith(viewState: ViewState.error));
+      },
       (authors) =>
           emit(state.copyWith(viewState: ViewState.loaded, authors: authors)),
     );
