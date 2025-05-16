@@ -11,6 +11,47 @@ class AppTheme {
       appBarTheme: const AppBarTheme(
         centerTitle: true,
       ),
+      extensions: <ThemeExtension<dynamic>>[
+        CustomTextStyles(),
+      ],
+    );
+  }
+}
+
+class CustomTextStyles extends ThemeExtension<CustomTextStyles> {
+  final TextStyle listTileSubtitleStyle;
+
+  CustomTextStyles({
+    this.listTileSubtitleStyle = const TextStyle(
+      fontSize: 12,
+      color: Color.fromARGB(255, 108, 108, 108), 
+    ),
+  });
+
+  @override
+  ThemeExtension<CustomTextStyles> copyWith({
+    TextStyle? listTileSubtitleStyle,
+  }) {
+    return CustomTextStyles(
+      listTileSubtitleStyle: listTileSubtitleStyle ?? this.listTileSubtitleStyle,
+    );
+  }
+
+  @override
+  ThemeExtension<CustomTextStyles> lerp(
+    covariant ThemeExtension<CustomTextStyles>? other,
+    double t,
+  ) {
+    if (other is! CustomTextStyles) {
+      return this;
+    }
+    
+    return CustomTextStyles(
+      listTileSubtitleStyle: TextStyle.lerp(
+        listTileSubtitleStyle,
+        other.listTileSubtitleStyle,
+        t,
+      )!,
     );
   }
 }
