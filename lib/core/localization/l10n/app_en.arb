@@ -30,5 +30,29 @@
   "notAvailableShort": "N/A",
   "@notAvailableShort": {
     "description": "The short form of not available: N/A"
+  },
+  "authorSortOptionNameAsc": "Name Ascending",
+  "@authorSortOptionNameAsc": {
+    "description": "Sort authors by name in ascending order"
+  },
+  "authorSortOptionNameDesc": "Name Descending",
+  "@authorSortOptionNameDesc": {
+    "description": "Sort authors by name in descending order"
+  },
+  "authorSortOptionTopWorkAsc": "Top Work Ascending",
+  "@authorSortOptionTopWorkAsc": {
+    "description": "Sort authors by top work in ascending order"
+  },
+  "authorSortOptionTopWorkDesc": "Top Work Descending",
+  "@authorSortOptionTopWorkDesc": {
+    "description": "Sort authors by top work in descending order"
+  },
+  "authorSortOptionRatingsAverageAsc": "Ratings Ascending",
+  "@authorSortOptionRatingsAverageAsc": {
+    "description": "Sort authors by ratings average in ascending order"
+  },
+  "authorSortOptionRatingsAverageDesc": "Ratings Descending",
+  "@authorSortOptionRatingsAverageDesc": {
+    "description": "Sort authors by ratings average in descending order"
   }
 }

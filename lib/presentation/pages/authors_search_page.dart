@@ -3,9 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:realview_challenge/core/di/injection.dart';
 import 'package:realview_challenge/core/enum/view_state.dart';
 import 'package:realview_challenge/core/localization/app_localizations_extension.dart';
+import 'package:realview_challenge/domain/enum/author_sort_option.dart';
 import 'package:realview_challenge/presentation/cubits/authors_cubit.dart';
 import 'package:realview_challenge/presentation/widgets/authors_list.dart';
 import 'package:realview_challenge/presentation/widgets/authors_search_bar.dart';
+import 'package:realview_challenge/presentation/widgets/sort_option_item.dart';
 
 class AuthorsSearchPage extends StatelessWidget {
   const AuthorsSearchPage({super.key});
@@ -39,17 +41,28 @@ class _AuthorsSearchPageContentState extends State<_AuthorsSearchPageContent> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(context.l10n.appTitle)),
+      appBar: AppBar(
+        title: Text(context.l10n.appTitle),
+        actions: [
+          PopupMenuButton<AuthorSortOption>(
+            onSelected: (sortOption) => context.read<AuthorsCubit>().setSortingOption(sortOption),
+            itemBuilder: (context) => AuthorSortOption.values.map((sortOption) => PopupMenuItem<AuthorSortOption>(
+                value: sortOption,
+                child: SortOptionItem(sortOption: sortOption),
+              )).toList(),
+            icon: const Icon(Icons.sort),
+          )
+        ],
+      ),
       body: Column(
         children: [
           Padding(
             padding: const EdgeInsets.all(16.0),
-            child: AuthorsSearchBar(searchController: _searchController, onChanged: (query) {
-              context.read<AuthorsCubit>().getAuthors(query);
-            },
-            onClear: () {
-              context.read<AuthorsCubit>().resetAuthors();
-            }),
+            child: AuthorsSearchBar(
+              searchController: _searchController,
+              onChanged: (query) => context.read<AuthorsCubit>().getAuthors(query),
+              onClear: () => context.read<AuthorsCubit>().resetAuthors(),
+            ),
           ),
           Expanded(
             child: BlocBuilder<AuthorsCubit, AuthorsState>(
@@ -64,11 +77,13 @@ class _AuthorsSearchPageContentState extends State<_AuthorsSearchPageContent> {
                       return Center(child: Text(context.l10n.noAuthorsFound));
                     }
                     return AuthorsList(
-                      itemCount: state.authors.length,
-                      authors: state.authors,
+                      itemCount: state.sortedAuthors.length,
+                      authors: state.sortedAuthors,
                     );
                   case ViewState.error:
-                    return  Center(child: Text(context.l10n.errorWhileFetchingAuthors));
+                    return Center(
+                      child: Text(context.l10n.errorWhileFetchingAuthors),
+                    );
                   default:
                     return const SizedBox.shrink();
                 }
@@ -80,3 +95,4 @@ class _AuthorsSearchPageContentState extends State<_AuthorsSearchPageContent> {
     );
   }
 }
+

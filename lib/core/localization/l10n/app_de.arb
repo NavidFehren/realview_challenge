@@ -6,5 +6,11 @@
   "errorWhileFetchingAuthors": "Fehler beim Abrufen der Autoren",
   "topWork": "Top Werk",
   "birthDate": "Geburtsdatum",
-  "notAvailableShort": "N/A"
+  "notAvailableShort": "N/A",
+  "authorSortOptionNameAsc": "Name Aufsteigend",
+  "authorSortOptionNameDesc": "Name Absteigend",
+  "authorSortOptionTopWorkAsc": "Top Werk Aufsteigend",
+  "authorSortOptionTopWorkDesc": "Top Werk Absteigend",
+  "authorSortOptionRatingsAverageAsc": "Bewertung Aufsteigend",
+  "authorSortOptionRatingsAverageDesc": "Bewertung Absteigend"
 }

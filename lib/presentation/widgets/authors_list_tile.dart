@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:realview_challenge/core/localization/app_localizations_extension.dart';
 import 'package:realview_challenge/core/theme/app_theme.dart';
 import 'package:realview_challenge/domain/entities/author.dart';
+import 'package:realview_challenge/presentation/widgets/star_rating.dart';
 
 class AuthorsListTile extends StatelessWidget {
   final Author author;
@@ -9,7 +10,7 @@ class AuthorsListTile extends StatelessWidget {
   const AuthorsListTile({super.key, required this.author});
 
   @override
-  Widget build(BuildContext context) {    
+  Widget build(BuildContext context) {
     return Card(
       elevation: 2.0,
       margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
@@ -19,11 +20,20 @@ class AuthorsListTile extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              author.name,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: Theme.of(context).textTheme.titleMedium
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: Text(
+                    author.name,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
+                ),
+                const SizedBox(width: 8.0),
+                StarRating(rating: author.formattedRatingsAverage),
+              ],
             ),
             _buildSubtitle(
               context: context,
@@ -46,14 +56,18 @@ class AuthorsListTile extends StatelessWidget {
     required String label,
     String? value,
   }) {
-    final displayValue = value?.isNotEmpty == true ? value : context.l10n.notAvailableShort;
+    final displayValue =
+        value?.isNotEmpty == true ? value : context.l10n.notAvailableShort;
     return Padding(
       padding: const EdgeInsets.only(top: 6.0),
       child: Text(
         "$label: $displayValue",
         maxLines: 1,
         overflow: TextOverflow.ellipsis,
-        style: Theme.of(context).extension<CustomTextStyles>()?.listTileSubtitleStyle,
+        style:
+            Theme.of(
+              context,
+            ).extension<CustomTextStyles>()?.listTileSubtitleStyle,
       ),
     );
   }
