@@ -17,12 +17,16 @@ class AuthorModel extends Author {
   @JsonKey(name: 'top_work')
   final String? topWork;
 
+  @JsonKey(name: 'ratings_average')
+  final double ratingsAverage;
+
   const AuthorModel({
     required this.key,
     required this.name,
     required this.birthDate,
     required this.topWork,
-  }) : super(key: key, name: name, birthDate: birthDate, topWork: topWork);
+    required this.ratingsAverage,
+  }) : super(key: key, name: name, birthDate: birthDate, topWork: topWork, ratingsAverage: ratingsAverage);
 
   factory AuthorModel.fromJson(Map<String, dynamic> json) =>
       _$AuthorModelFromJson(json);
