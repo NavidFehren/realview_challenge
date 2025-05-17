@@ -12,5 +12,6 @@
   "authorSortOptionTopWorkAsc": "Top Werk Aufsteigend",
   "authorSortOptionTopWorkDesc": "Top Werk Absteigend",
   "authorSortOptionRatingsAverageAsc": "Bewertung Aufsteigend",
-  "authorSortOptionRatingsAverageDesc": "Bewertung Absteigend"
+  "authorSortOptionRatingsAverageDesc": "Bewertung Absteigend",
+  "retry": "Erneut versuchen"
 }

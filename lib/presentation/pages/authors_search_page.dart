@@ -5,6 +5,7 @@ import 'package:realview_challenge/core/enum/view_state.dart';
 import 'package:realview_challenge/core/localization/app_localizations_extension.dart';
 import 'package:realview_challenge/domain/enum/author_sort_option.dart';
 import 'package:realview_challenge/presentation/cubits/authors_cubit.dart';
+import 'package:realview_challenge/presentation/widgets/author_error.dart';
 import 'package:realview_challenge/presentation/widgets/authors_list.dart';
 import 'package:realview_challenge/presentation/widgets/authors_search_bar.dart';
 import 'package:realview_challenge/presentation/widgets/sort_option_item.dart';
@@ -102,7 +103,7 @@ class _AuthorsSearchPageContentState extends State<_AuthorsSearchPageContent> {
           authors: state.sortedAuthors,
         );
       case ViewState.error:
-        return Center(child: Text(context.l10n.errorWhileFetchingAuthors));
+        return AuthorError(query: _searchController.text);
       default:
         return const SizedBox.shrink();
     }

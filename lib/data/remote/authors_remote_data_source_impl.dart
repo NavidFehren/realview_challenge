@@ -49,6 +49,8 @@ class AuthorsRemoteDataSourceImpl implements AuthorsRemoteDataSource {
       }
       // For other types of DioException, rethrow the exception
       throw Exception('Failed to search authors: ${e.message}');
-    }
+    } catch (e) {
+      throw Exception(e.toString());
+    } 
   }
 }
