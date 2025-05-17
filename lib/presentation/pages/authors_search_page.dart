@@ -40,59 +40,71 @@ class _AuthorsSearchPageContentState extends State<_AuthorsSearchPageContent> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(context.l10n.appTitle),
-        actions: [
-          PopupMenuButton<AuthorSortOption>(
-            onSelected: (sortOption) => context.read<AuthorsCubit>().setSortingOption(sortOption),
-            itemBuilder: (context) => AuthorSortOption.values.map((sortOption) => PopupMenuItem<AuthorSortOption>(
-                value: sortOption,
-                child: SortOptionItem(sortOption: sortOption),
-              )).toList(),
-            icon: const Icon(Icons.sort),
-          )
-        ],
-      ),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: AuthorsSearchBar(
-              searchController: _searchController,
-              onChanged: (query) => context.read<AuthorsCubit>().getAuthors(query),
-              onClear: () => context.read<AuthorsCubit>().resetAuthors(),
-            ),
+    return BlocBuilder<AuthorsCubit, AuthorsState>(
+      builder: (context, state) {
+        return Scaffold(
+          appBar: AppBar(
+            title: Text(context.l10n.appTitle),
+            actions: [
+              PopupMenuButton<AuthorSortOption>(
+                onSelected:
+                    (sortOption) => context
+                        .read<AuthorsCubit>()
+                        .setSortingOption(sortOption),
+                itemBuilder:
+                    (context) =>
+                        AuthorSortOption.values
+                            .map(
+                              (sortOption) => PopupMenuItem<AuthorSortOption>(
+                                value: sortOption,
+                                child: SortOptionItem(
+                                  sortOption: sortOption,
+                                  isSelected: state.sortOption == sortOption,
+                                ),
+                              ),
+                            )
+                            .toList(),
+                icon: const Icon(Icons.sort),
+              ),
+            ],
           ),
-          Expanded(
-            child: BlocBuilder<AuthorsCubit, AuthorsState>(
-              builder: (context, state) {
-                switch (state.viewState) {
-                  case ViewState.initial:
-                    return Center(child: Text(context.l10n.searchForAuthors));
-                  case ViewState.loading:
-                    return const Center(child: CircularProgressIndicator());
-                  case ViewState.loaded:
-                    if (state.authors.isEmpty) {
-                      return Center(child: Text(context.l10n.noAuthorsFound));
-                    }
-                    return AuthorsList(
-                      itemCount: state.sortedAuthors.length,
-                      authors: state.sortedAuthors,
-                    );
-                  case ViewState.error:
-                    return Center(
-                      child: Text(context.l10n.errorWhileFetchingAuthors),
-                    );
-                  default:
-                    return const SizedBox.shrink();
-                }
-              },
-            ),
+          body: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: AuthorsSearchBar(
+                  searchController: _searchController,
+                  onChanged:
+                      (query) => context.read<AuthorsCubit>().getAuthors(query),
+                  onClear: () => context.read<AuthorsCubit>().resetAuthors(),
+                ),
+              ),
+              Expanded(child: _getBody(state)),
+            ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
-}
 
+  Widget _getBody(AuthorsState state) {
+    switch (state.viewState) {
+      case ViewState.initial:
+        return Center(child: Text(context.l10n.searchForAuthors));
+      case ViewState.loading:
+        return const Center(child: CircularProgressIndicator());
+      case ViewState.loaded:
+        if (state.authors.isEmpty) {
+          return Center(child: Text(context.l10n.noAuthorsFound));
+        }
+        return AuthorsList(
+          itemCount: state.sortedAuthors.length,
+          authors: state.sortedAuthors,
+        );
+      case ViewState.error:
+        return Center(child: Text(context.l10n.errorWhileFetchingAuthors));
+      default:
+        return const SizedBox.shrink();
+    }
+  }
+}
