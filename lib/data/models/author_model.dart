@@ -32,4 +32,24 @@ class AuthorModel extends Author {
       _$AuthorModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$AuthorModelToJson(this);
+
+  Author toEntity() {
+    return Author(
+      key: key,
+      name: name,
+      birthDate: birthDate,
+      topWork: topWork,
+      ratingsAverage: ratingsAverage,
+    );
+  }
+
+  factory AuthorModel.fromEntity(Author author) {
+    return AuthorModel(
+      key: author.key,
+      name: author.name,
+      birthDate: author.birthDate,
+      topWork: author.topWork,
+      ratingsAverage: author.ratingsAverage,
+    );
+  }
 }

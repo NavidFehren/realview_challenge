@@ -16,7 +16,9 @@ class AuthorsRepositoryImpl implements AuthorsRepository {
   @override
   Future<Either<Failure, List<Author>>> searchAuthors(String query) async {
     try {
-      final authors = await remoteDataSource.searchAuthors(query);
+      final authorModels = await remoteDataSource.searchAuthors(query);
+      final authors = authorModels.map((model) => model.toEntity()).toList();
+      
       return Right(authors);
     } on Exception catch (e) {
       if (e is RequestCancelledException) {
